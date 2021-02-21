@@ -167,136 +167,128 @@
           </span>
         </div>
       </div>
-      <div id="content"><h1>คุณลักษณะนิพจน์ที่มีความโปร่งใส</h1>
+      <div id="content"><h1>การประเมินผลนิพจน์แบบ Short circuit</h1>
 
-        <button id="tag1" onclick="writeUserData('tag1','t6_5')" value="Referential Transparency">คุณลักษณะ Referential Transparency</button>
-        นิพจน์ที่มีความโปร่งใส  หรือ นิพจน์ที่มีคุณลักษณะ  Referential Transparency คือนิพจน์  (E) ที่สามารถแทนที่ค่า ตัวแปร หรือฟังก์ชันในนิพจน์ แล้วไม่ทำให้ค่าของนิพจน์(Ev) เปลี่ยนแปลงไป
-        <pre>Ev  =  E
-        โดย
-        E = {Literal value, variable, function}
-        </pre>
-        
-        เช่น
-        <pre>a + b = a + 10
-        </pre>
+        <button id="tag1" onclick="writeUserData('tag1','t6_4')" value="Short Circuit Evaluation">การประเมินผลนิพจน์แบบลัดวงจร (Short Circuit Evaluation)</button>
         <p>
-        หากแทนค่า b ด้วย 10  ก็จะทำให้ประโยคคำสั่งด้านซ้ายและขวามีค่าเท่ากับ
-        ยกตัวอย่างเช่นเมื่อเขียนโปรแกรมคำสั่ง <br>
-        </p><pre>b = 10;
-        x = a + b;
-        </pre>
-        จะมีค่าเท่ากับ
-        <pre>x = a + 10;
-        </pre>
-        <p>ข้อผิดพลาดในการเขียนโปรแกรม<br>
-        ในบางกรณีนักพัฒนาคิดว่าค่าที่ได้จากนิพจน์มีค่าเท่ากัน  เนื่องจากนิพจน์ที่ตนเขียนนั้นมีรูปแบบของคำสั่งที่มองผิวเผินแล้วมีคุณลักษณะ  Referential Transparency
-        ยกตัวอย่างโค้ดภาษา  C เช่น</p>
-        <pre>a = 20;   //สมมติให้ a เป็นตัวแปรที่มองเห็นได้ในฟังก์ชัน
-        x  = a + add(10, 30);    //นิพจน์ E1
-        y = a + add(10,30);     //นิพจน์ E2
-                                //นักพัฒนาโปรแกรมจะดากหมายว่าตัวแปร x และ y ต้องมีผลลัพธ์เท่ากัน  แต่ในการประเมินผลที่เกิดขึ้นผลลัพธ์ไม่เท่ากัน
-        int add(int   x, int y){
-               int sum;
-               a  = 10;
-               sum = x + y;
-               return sum;
-        }
-        </pre>
-        <p>
-          <!--Modal -->
-          <script>
-            $(document).ready(function(){
-              $("#myModal1").modal("hide");
-              $("#closeV1").click(function(){
-                $("#myModel1").modal("hide");
-              });
-              $("#openV1").click(function(){
-                $("#myModel1").modal("show");
-              });
-            });
-          </script>
-          <button id="openV1" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
-           <img src="images/video.jpg" width="30" height="30/">
-          </button>
-          </p><div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" width="400" height="350">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button id="closeV1" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span></button>
-                  <h4 class="modal-title" id="myModalLabel">อธิบายโค้ด</h4>
-                </div>
-                <div class="modal-body" width="350" height="300">
-                  <video controls="controls" src="media/t6_5_1.mp4" width="350" height="300">
-                        Your browser does not support the HTML5 Video element.
-                    </video>
-                </div>
-        
-              </div>
-            </div>
-          </div>
-          <!----><br>
-        <p></p>
-        <p>
-        พิจารณาการเขียนโปรแกรมเบื้องต้น  สมมติให้ลำดับการดำเนินการของพิจน์ที่เครื่องคอมพิวเตอร์คำนวณเป็นดังนี้
-        อ่านค่าของตัวโอเปอแรนด์ a
-        ดำเนินการเป็นลำดับตามเครื่องหมายโอเปอเรเตอร์  ซึ่งการเรียกฟังก์ชันจะเกิดขึ้นหลังจากอ่านค่าของโอเปอแรนด์ a แล้ว
-        ทำการหาผลบวก
-        นักเขียนโปรแกรมจะเข้าใจว่า<br>
-        
-        นิพจน์ E1 และ E2 เมื่อมองรูปแบบโค้ดคำสั่งก็น่าจะได้ผลลัพธ์แบบเดียวกัน คือ ค่าของ x จะเท่ากับค่าของ y
-        นักเขียนโปรแกรมอาจเข้าใจว่าผลลัพธ์ x และ y เท่ากัน เพราะตนมองเห็น a เป็น 20 และคาดหมายผลลัพธ์คือ 60
-        แต่ความเป็นจริงนิพจน์ E1 และ E2 ได้ผลลัพธ์เท่ากันคือ 50  เพราะมีการเรียกฟังก์ชัน add  ก่อนซึ่งฟังก์ชันทำการเปลี่ยนแปลงค่าของตัวแปร a
-        <br>
-        </p><p>ดังนั้นจึงสรุปได้ว่านิพจน์ E1 และ E2 มีคุณลักษณะ Referential Transparency ระหว่างกัน
-        แต่จะเห็นว่าเมื่อการเรียกฟังก์ชันมีปัญหา Side effect เกิดขึ้น ค่าที่นักพัฒนาโปรแกรมคาดหวังอาจไม่เท่ากับค่าที่
-        เกิดจากการประมวลผลจริง
+        ภาษาการโปรแกรม อาจมีการประเมินผลนิพจน์แบบ Short circuit กล่าวคือ การประเมินผลนิพจน์ หนึ่งๆ อาจไม่จำเป็นที่จะต้องทำการประเมินผลนิพจน์ย่อยทั้งหมด ก็สามารถส่งค่าผลลัพธ์ได้แล้ว
+        อาจพิจารณาการคำนวณบางประเภทในทางคณิตศาสตร์ เช่น
         </p>
-        ตัวอย่างกรณีที่ทำให้นิพจน์ E1 และ E2 ไม่มีคุณลักษณะ Referential Transparency
+        <pre>x    =  b x c  x  d  / e
+        </pre>
+        <p>ในทางคณิตศาสตร์
+        หากนำค่า 0 ไปคูณกับค่าของตัวแปรใดก็ตาม  ผลลัพธ์จะได้ 0 เสมอ  ดังนั้นถ้าพบว่า b หรือ c หรือ d มีค่าเท่ากับ 0 ก็ไม่จำเป็นต้องประเมินผลนิพจน์ในส่วนที่เหลือ  สามารถส่งค่าผลลัพธ์คือ 0 ได้ทันที
+        </p>
         <p>
-          <!--Modal -->
-          <script>
-            $(document).ready(function(){
-              $("#myModal").modal("hide");
-              $("#closeV").click(function(){
-                $("#myModel").modal("hide");
-              });
-              $("#openV").click(function(){
-                $("#myModel").modal("show");
-              });
+            ในทางคอมพิวเตอร์
+        หากภาษาการโปรแกรมมีการสนับสนุนการดำเนินการแบบลัดวงจรนี้  จะเป็นประโยชน์ต่อเวลาที่ใช้ในการรันโปรแกรม ทำให้รันได้เร็วขึ้น  โดย CPU ไม่จำเป็นต้องเสียเวลาในการดำเนินการกับนิพจน์บางส่วนที่ไม่จำเป็น
+        </p>
+        <p>
+        สิ่งที่ภาษาการโปรแกรมจะต้องพิจารณาคือ โอเปอเรเตอร์ใดบ้างที่ภาษาการโปรแกรมจะสนับสนุนการทำงานลัดวงจร
+        อาจพิจารณาในเบื้องต้นสำหรับตัวดำเนินการต่อไปนี้<br>
+        </p><ul><li><button id="tag2" onclick="writeUserData('tag2','t6_4')" value="And">ตัวดำเนินการคูณ</button></li>
+        <li>ตัวดำเนินการด้วยโอเปอเรเตอร์เปรียบเทียบ<button id="tag3" onclick="writeUserData('tag3','t6_4')" value="AND logical operator"> AND</button></li>
+        <li>ตัวดำเนินการด้วยโอเปอเรเตอร์เปรียบเทียบ<button id="tag4" onclick="writeUserData('tag4','t6_4')" value="OR logical operator"> OR</button></li>
+        </ul>
+        <p>
+        ตัวอย่างที่ 1</p>
+        <pre>if (A AND B AND C)  then.....
+        else......
+        </pre>
+        เช่นในภาษา C
+        <pre>if ((a == 0) AND (b &lt;10) AND (c &gt; d))
+           result = 50;
+        else
+           result = 100;
+        </pre>
+        <p><!--Modal -->
+        <script>
+          $(document).ready(function(){
+            $("#myModal1").modal("hide");
+            $("#closeV1").click(function(){
+              $("#myModel1").modal("hide");
             });
-          </script>
-          <button id="openV" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-           <img src="images/video.jpg" width="30" height="30/">
-          </button>
-          </p><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" width="400" height="350">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button id="closeV" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span></button>
-                  <h4 class="modal-title" id="myModalLabel">อธิบายโค้ด</h4>
-                </div>
-                <div class="modal-body" width="350" height="300">
-                  <video controls="controls" src="media/t6_5_2.mp4" width="350" height="300">
-                        Your browser does not support the HTML5 Video element.
-                    </video>
-                </div>
-        
+            $("#openV1").click(function(){
+              $("#myModel1").modal("show");
+            });
+          });
+        </script>
+        <button id="openV1" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+         <img src="images/video.jpg" width="30" height="30/">
+        </button>
+        </p><div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" width="400" height="350">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button id="closeV1" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">อธิบายโค้ด</h4>
               </div>
+              <div class="modal-body" width="350" height="300">
+                <video controls="controls" src="media/t6_4_1.mp4" width="350" height="300">
+                      Your browser does not support the HTML5 Video element.
+                  </video>
+              </div>
+        
             </div>
           </div>
-          <!----><br>
+        </div>
+        <!----><br>
         <p></p>
+        <p>
+            หากในเวลารันพบว่านิพจน์ (a==0) เป็นเท็จ  ดังนั้นภาษาการโปรแกรมอาจทำการประเมินผลนิพจน์แบบลัดวงจรและส่ง false เป็นผลลัพธ์ของการพิจารณาเงื่อนไขนี้เลยโดยไม่ต้องประเมินผลนิพจน์อื่นๆที่เหลือ เพราะนิพจน์ใดนิพจน์หนึ่งเป็นเท็จก็จะทำให้ผลลัพธ์เป็นเท็จทันที
+        และเป็นไปในแนวทางเดียวกันกับ OR หากนิพจน์ใดนิพจน์หนึ่งเป็นจริง ก็จะทำให้ได้ผลลัพธ์เป็นจริง เช่น
+        ตัวอย่างที่ 2</p>
+        <pre>if (A OR B OR C)  then.....else......
+        </pre>
+        เช่น
+        <pre>if ((a == 0) OR (b &lt;10) OR (c &gt; d))
+            result = 50;
+        else
+            result = 100;
+        </pre>
+        <p><!--Modal -->
+        <script>
+          $(document).ready(function(){
+            $("#myModal").modal("hide");
+            $("#closeV").click(function(){
+              $("#myModel").modal("hide");
+            });
+            $("#openV").click(function(){
+              $("#myModel").modal("show");
+            });
+          });
+        </script>
+        <button id="openV" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+         <img src="images/video.jpg" width="30" height="30/">
+        </button>
+        </p><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" width="400" height="350">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button id="closeV" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">อธิบายโค้ด</h4>
+              </div>
+              <div class="modal-body" width="350" height="300">
+                <video controls="controls" src="media/t6_4_2.mp4" width="350" height="300">
+                      Your browser does not support the HTML5 Video element.
+                  </video>
+              </div>
         
-        
+            </div>
+          </div>
+        </div>
+        <!----><br>
+        <p></p>
+        <p>
+        หากในเวลารัน ประเมินผลนิพจน์ได้ว่า นิพจน์ใดนิพจน์หนึ่งเป็น จริง  ก็จะทำให้เงื่อนไขนี้เป็นจริง  เช่น เมื่อทำการประเมินผลนิพจน์ (a==0) เป็นจริง ก็สามารถรีเทิร์นผลลัพธ์ได้เลย
+        </p>
         <h1>ตอบคำถามต่อไปนี้</h1>
         <p>
-        </p><h4>ประโยค "ปัญหานิพจน์ที่มีความโปร่งใสมักเกี่ยวข้องกับ Side effect " ประโยคนี้เป็นจริงหรือเป็นเท็จ
-            <button id="tag2" onclick="writeUserData('tag2','t6_5')" value="Referential Transparency relates to side effect">True</button>
-            หรือ <button id="tag3" onclick="writeUserData('tag3','t6_5')" value="Referential Transparency does not relate to side effect">False</button>
-        </h4>
-        <button id="tag_t6_5_q1" onclick="startTag('tag_t6_5_q1')">เริ่มแท็ก</button>
+        </p><h4>ภาษาโปรแกรมมักสนับสนุน Short circuit evaluation ในการใช้งานตัวดำเนินการใดบ้าง
+            </h4>
+        <button id="tag_t6_4_q1" onclick="startTag('tag_t6_4_q1')">เริ่มแท็ก</button>
         <p></p>
         </div>
 </body>
